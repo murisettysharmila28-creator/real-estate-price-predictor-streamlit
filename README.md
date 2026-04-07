@@ -28,5 +28,8 @@ The dataset contains housing-related features such as property tax, insurance, s
 - Model training and evaluation
 - Price prediction through Streamlit UI
 
+## Live App
+https://real-estate-price-predictor-app-sharmila.streamlit.app
+
 ## Author
 Sharmila
