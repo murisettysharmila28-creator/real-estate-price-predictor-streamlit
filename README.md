@@ -133,7 +133,7 @@ real-estate-price-predictor-streamlit/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/real-estate-price-predictor-streamlit.git
+git clone https://github.com/murisettysharmila28-creator/real-estate-price-predictor-streamlit
 cd real-estate-price-predictor-streamlit
 
 ### 2. Install dependencies
