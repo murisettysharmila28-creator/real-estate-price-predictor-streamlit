@@ -1,0 +1,17 @@
+2026-04-11 16:45:40,762 - INFO - real_estate_logger - Dataset loaded successfully. Shape: (1860, 14)
+2026-04-11 16:45:40,768 - INFO - real_estate_logger - Real estate data prepared successfully.
+2026-04-11 16:45:40,780 - INFO - real_estate_logger - Linear Regression model trained successfully.
+2026-04-11 16:45:40,783 - INFO - real_estate_logger - Train MAE: 87171.52
+2026-04-11 16:45:40,783 - INFO - real_estate_logger - Test MAE: 85218.41
+2026-04-11 16:45:44,883 - INFO - real_estate_logger - Random Forest model trained successfully.
+2026-04-11 16:45:44,950 - INFO - real_estate_logger - Train MAE: 16396.72
+2026-04-11 16:45:44,950 - INFO - real_estate_logger - Test MAE: 47323.66
+2026-04-11 16:45:44,950 - INFO - real_estate_logger - Best model selected: Random Forest with Test MAE = 47323.66
+2026-04-11 16:46:08,707 - INFO - real_estate_logger - Cross-validation MAE scores: [36031.57, 38657.02, 42692.24, 53089.13, 71276.22]
+2026-04-11 16:46:08,707 - INFO - real_estate_logger - Average CV MAE: 48349.23
+2026-04-11 16:46:08,708 - INFO - real_estate_logger - CV MAE Std Dev: 12851.29
+2026-04-11 16:46:08,734 - INFO - real_estate_logger - Model saved at: C:\Sharmila\Machine Learning\Projects\real-estate-price-predictor-streamlit\model\real_estate_model.pkl
+2026-04-11 16:46:33,665 - INFO - real_estate_logger - Model loaded successfully.
+2026-04-11 16:46:33,679 - INFO - real_estate_logger - Prediction generated: 253501.495
+2026-04-11 16:46:34,627 - INFO - real_estate_logger - Model loaded successfully.
+2026-04-11 16:46:34,646 - INFO - real_estate_logger - Prediction generated: 253501.495

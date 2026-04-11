@@ -1,99 +1,157 @@
-# Real Estate Price Prediction
+# Real Estate Price Prediction (Streamlit App)
 
-## Live App
+## Overview
 
+This project presents an end-to-end machine learning pipeline for predicting real estate prices using structured housing data. The original notebook-based workflow was transformed into a modular, production-oriented Python project with proper logging, error handling, validation, and deployment using Streamlit.
+
+The application enables users to input property attributes and obtain a real-time estimate of property price, making the solution suitable for exploratory analysis and decision support.
+
+Live Application:
 https://real-estate-price-predictor-app-sharmila.streamlit.app
 
 ---
 
-## Overview
+## Problem Statement
 
-This project is an end-to-end machine learning application for predicting real estate prices using structured housing data. The notebook-based solution was modularized into a reusable Python project and deployed as an interactive Streamlit web application.
+Notebook-based machine learning solutions often lack modularity, reproducibility, and robustness required for real-world deployment. They typically do not incorporate structured validation or consistent pipelines for training and inference.
 
-The application allows users to enter housing-related features and receive a predicted property price in real time.
-
----
-
-## Objective
-
-The goal of this project was to:
-- convert notebook-based machine learning code into a modular Python project
-- compare multiple regression models
-- evaluate model performance using error metrics
-- add additional validation for model stability
-- deploy the final model through Streamlit
+This project addresses these challenges by:
+- converting exploratory code into a modular pipeline
+- ensuring consistent feature handling across training and prediction
+- incorporating logging and structured error handling
+- validating model performance using cross-validation
+- deploying the model for real-time inference
 
 ---
 
 ## Dataset
 
-The dataset contains housing-related and market-related features used to estimate property price.
+The dataset contains housing and market-related attributes used to estimate property price.
 
-### Features used
-- year_sold
-- property_tax
-- insurance
-- beds
-- baths
-- sqft
-- year_built
-- lot_size
-- basement
-- popular
-- recession
-- property_age
-- property_type_Condo
+### Features
+- year_sold  
+- property_tax  
+- insurance  
+- beds  
+- baths  
+- sqft  
+- year_built  
+- lot_size  
+- basement  
+- popular  
+- recession  
+- property_age  
+- property_type_Condo  
 
 ### Target
-- price
+- price  
+
+The dataset was preprocessed to ensure numerical consistency and proper feature selection for regression modelling.
 
 ---
 
-## Models Used
+## Code Modularization Approach
 
-The following regression models were tested:
-- Linear Regression
-- Random Forest Regressor
+The project follows a structured design aligned with real-world machine learning engineering practices:
 
-### Selected Model
-- **Random Forest Regressor**
+- `data_loader.py` - Handles dataset ingestion with error handling  
+- `train.py` - Model training, comparison, and selection  
+- `evaluate.py` - Computes regression metrics (MAE)  
+- `validation.py` - Performs cross-validation for robustness  
+- `predict.py` - Handles inference pipeline  
+- `logger.py` - Centralized logging system  
+- `custom_exception.py` - Structured exception handling  
 
-The Random Forest model was selected because it achieved the better test performance.
+This modular design improves maintainability, debugging, and scalability.
 
 ---
 
-## Evaluation and Validation
+## Modelling Approach
 
-### Hold-out Test Result
-- **Best Test MAE:** 47,323.66
+Two regression models were evaluated:
 
-### Additional Validation
-To assess model stability beyond a single train-test split, 5-fold cross-validation was performed using Mean Absolute Error (MAE).
+- Linear Regression  
+- Random Forest Regressor  
 
-#### Cross-Validation MAE Scores
-- 36,031.57
-- 38,657.02
-- 42,692.24
-- 53,089.13
-- 71,276.22
+Random Forest was selected as the final model due to its ability to capture non-linear relationships and interactions between features, which are common in real estate pricing.
 
-#### Average Cross-Validation MAE
-- **48,349.23**
+Unlike Linear Regression, which assumes linearity, Random Forest leverages ensemble learning to reduce variance and improve predictive performance.
+
+---
+
+## Training Results
+
+Both models were trained and evaluated using Mean Absolute Error (MAE) as the primary metric.
+
+Linear Regression provided a baseline with interpretable but limited performance, while Random Forest achieved lower error and better captured complex feature relationships.
+
+---
+
+## Test Results
+
+- Random Forest Test MAE: 47,323.66  
+
+The model achieved a relatively low error on the hold-out test set, indicating good predictive capability.
+
+---
+
+## Validation Results
+
+To assess model reliability beyond a single train-test split, 5-fold cross-validation was performed using Mean Absolute Error.
+
+### Cross-Validation MAE Scores
+
+- 36,031.57  
+- 38,657.02  
+- 42,692.24  
+- 53,089.13  
+- 71,276.22  
+
+### Average Cross-Validation MAE
+
+- 48,349.23  
+
+### Standard Deviation (Approximate Insight)
+
+The variation across folds indicates some sensitivity to data splits, particularly due to potential outliers or distribution differences in housing data.
 
 ### Interpretation
-The average cross-validation MAE was close to the hold-out test MAE, which suggests that the Random Forest model performed reasonably consistently across different data splits.
+
+The average cross-validation MAE (48,349.23) is very close to the hold-out test MAE (47,323.66), which suggests that the model generalizes reasonably well and is not overfitting to a single split.
+
+The variability across folds highlights that real estate data can be heterogeneous, but the model still maintains overall stability.
 
 ---
 
-## Project Features
+## Streamlit Application
 
-- Modular code structure
-- Separate training, evaluation, validation, and prediction modules
-- Logging and error handling
-- Model comparison using MAE
-- Additional 5-fold cross-validation for model validation
-- Interactive Streamlit interface for price prediction
-- Deployed web application for real-time inference
+The Streamlit application provides an interactive interface for real-time price prediction.
+
+Features:
+- Input housing attributes  
+- Real-time price estimation  
+- Clean and user-friendly interface  
+
+The app uses the trained model to generate predictions consistently with the training pipeline.
+
+---
+
+## Logging and Error Handling
+
+The project includes production-level logging and exception handling:
+
+- Logs are stored in `logs/app.log`  
+- Tracks:
+  - data loading  
+  - model training  
+  - evaluation and validation  
+  - prediction flow  
+  - runtime errors with stack traces  
+
+Custom exception handling ensures:
+- traceable errors  
+- improved debugging  
+- robust execution of the pipeline  
 
 ---
 
@@ -113,69 +171,118 @@ real-estate-price-predictor-streamlit/
 ├── model/
 │   └── real_estate_model.pkl
 │
+├── logs/
+│   └── app.log
+│
 ├── src/
 │   ├── __init__.py
 │   ├── config.py
 │   ├── data_loader.py
 │   ├── train.py
 │   ├── evaluate.py
-│   ├── validate.py
+│   ├── validation.py
 │   ├── predict.py
-│   └── logger.py
+│   ├── logger.py
+│   └── custom_exception.py
 │
 └── notebooks/
     └── Real_Estate.ipynb
-
 ```
 
-## How to Run Locally
+---
 
-### 1. Clone the repository
+## Installation
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/murisettysharmila28-creator/real-estate-price-predictor-streamlit
 cd real-estate-price-predictor-streamlit
+```
 
-### 2. Install dependencies
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
+```
 
-### 3. Train the model
+---
+
+## Run the Project
+
+Train the model:
+
+```bash
 python main.py
+```
 
-### 4. Run the Streamlit app
+Run the Streamlit app:
+
+```bash
 python -m streamlit run app.py
 ```
+
+---
+
 ## Tech Stack
 
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-- Streamlit
-- Joblib
+- Python  
+- Pandas  
+- NumPy  
+- Scikit-learn  
+- Streamlit  
+- Joblib  
 
-## Key Learnings
+---
 
-- Converting notebook code into a modular ML project
-- Comparing regression models using MAE
-- Using cross-validation to assess model stability
-- Saving model artifacts for deployment
-- Building an interactive prediction app using Streamlit
+## Key Findings
+
+- Random Forest outperformed Linear Regression due to its ability to model non-linear relationships  
+- Cross-validation confirmed that model performance is stable across different data splits  
+- MAE is an effective metric for interpreting real estate prediction errors in monetary terms  
+- Feature interactions play a significant role in price prediction  
+
+---
 
 ## Limitations
 
-- The model depends on the quality and scope of the dataset
-- Important real-world location factors may not be fully captured
-- Predictions should be interpreted as estimates rather than exact market values
+- Model performance depends on dataset quality and coverage  
+- Location-specific features are limited  
+- Predictions are estimates and may not reflect real market fluctuations  
+- Some variability exists across different validation folds  
 
-## Future Improvements
+---
 
-- Hyperparameter tuning for Random Forest
-- Additional feature engineering
-- Incorporation of location-based variables
-- More robust validation using grid search or randomized search
-- Improved user interface and richer visualizations
+## Challenges
+
+- Selecting appropriate regression metrics for evaluation  
+- Handling variability in housing data  
+- Ensuring model stability across splits  
+- Designing a modular and production-ready pipeline  
+
+---
+
+## Learning Outcomes
+
+- Built a complete regression pipeline from scratch  
+- Applied cross-validation for robust evaluation  
+- Implemented logging and structured error handling  
+- Compared linear and ensemble models effectively  
+- Developed and deployed an interactive ML application  
+
+---
+
+## Future Enhancements
+
+- Hyperparameter tuning for Random Forest  
+- Incorporation of location-based features  
+- Advanced models such as Gradient Boosting or XGBoost  
+- Improved feature engineering  
+- Enhanced UI with visual insights  
+
+---
 
 ## Author
 
-Sharmila Murisetty - Data Analyst / BI Developer
+Sharmila Murisetty  
+Data Analyst / Business Intelligence Developer
