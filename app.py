@@ -1,5 +1,9 @@
 import streamlit as st
+
 from src.predict import predict_price
+from src.logger import setup_logger
+
+logger = setup_logger()
 
 st.set_page_config(page_title="Real Estate Price Predictor", layout="centered")
 
@@ -21,21 +25,26 @@ property_age = st.number_input("Property Age", min_value=0, value=10)
 property_type_condo = st.selectbox("Property Type Condo", [0, 1])
 
 if st.button("Predict Price"):
-    input_data = {
-        "year_sold": year_sold,
-        "property_tax": property_tax,
-        "insurance": insurance,
-        "beds": beds,
-        "baths": baths,
-        "sqft": sqft,
-        "year_built": year_built,
-        "lot_size": lot_size,
-        "basement": basement,
-        "popular": popular,
-        "recession": recession,
-        "property_age": property_age,
-        "property_type_Condo": property_type_condo,
-    }
+    try:
+        input_data = {
+            "year_sold": year_sold,
+            "property_tax": property_tax,
+            "insurance": insurance,
+            "beds": beds,
+            "baths": baths,
+            "sqft": sqft,
+            "year_built": year_built,
+            "lot_size": lot_size,
+            "basement": basement,
+            "popular": popular,
+            "recession": recession,
+            "property_age": property_age,
+            "property_type_Condo": property_type_condo,
+        }
 
-    prediction = predict_price(input_data)
-    st.success(f"Predicted Property Price: ${prediction:,.2f}")
+        prediction = predict_price(input_data)
+        st.success(f"Predicted Property Price: ${prediction:,.2f}")
+
+    except Exception as e:
+        logger.error(f"Error occurred in Real Estate Streamlit app: {e}", exc_info=True)
+        st.error(f"An error occurred: {e}")

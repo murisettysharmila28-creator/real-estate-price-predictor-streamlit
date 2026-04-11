@@ -15,3 +15,25 @@
 2026-04-11 16:46:33,679 - INFO - real_estate_logger - Prediction generated: 253501.495
 2026-04-11 16:46:34,627 - INFO - real_estate_logger - Model loaded successfully.
 2026-04-11 16:46:34,646 - INFO - real_estate_logger - Prediction generated: 253501.495
+2026-04-11 17:23:53,378 - INFO - real_estate_logger - Dataset loaded successfully. Shape: (1860, 14)
+2026-04-11 17:23:53,390 - INFO - real_estate_logger - Real estate data prepared successfully.
+2026-04-11 17:23:53,399 - INFO - real_estate_logger - Linear Regression model trained successfully.
+2026-04-11 17:23:53,399 - INFO - real_estate_logger - Train MAE: 87171.52
+2026-04-11 17:23:53,399 - INFO - real_estate_logger - Test MAE: 85218.41
+2026-04-11 17:23:57,422 - INFO - real_estate_logger - Random Forest model trained successfully.
+2026-04-11 17:23:57,473 - INFO - real_estate_logger - Train MAE: 16396.72
+2026-04-11 17:23:57,473 - INFO - real_estate_logger - Test MAE: 47323.66
+2026-04-11 17:23:57,473 - INFO - real_estate_logger - Best model selected: Random Forest with Test MAE = 47323.66
+2026-04-11 17:24:20,152 - INFO - real_estate_logger - Cross-validation MAE scores: [36031.57, 38657.02, 42692.24, 53089.13, 71276.22]
+2026-04-11 17:24:20,152 - INFO - real_estate_logger - Average CV MAE: 48349.23
+2026-04-11 17:24:20,152 - INFO - real_estate_logger - CV MAE Std Dev: 12851.29
+2026-04-11 17:24:20,207 - INFO - real_estate_logger - Model saved at: C:\Sharmila\Machine Learning\Projects\real-estate-price-predictor-streamlit\model\real_estate_model.pkl
+2026-04-11 17:24:47,246 - INFO - real_estate_logger - Prediction artifacts loaded successfully.
+2026-04-11 17:24:47,246 - INFO - real_estate_logger - Real estate input preprocessing completed successfully.
+2026-04-11 17:24:47,266 - INFO - real_estate_logger - Prediction generated successfully: 253501.495
+2026-04-11 17:25:11,547 - INFO - real_estate_logger - Prediction artifacts loaded successfully.
+2026-04-11 17:25:11,550 - INFO - real_estate_logger - Real estate input preprocessing completed successfully.
+2026-04-11 17:25:11,581 - INFO - real_estate_logger - Prediction generated successfully: 253751.995
+2026-04-11 17:25:26,185 - INFO - real_estate_logger - Prediction artifacts loaded successfully.
+2026-04-11 17:25:26,187 - INFO - real_estate_logger - Real estate input preprocessing completed successfully.
+2026-04-11 17:25:26,205 - INFO - real_estate_logger - Prediction generated successfully: 235969.185
